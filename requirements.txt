@@ -1,0 +1,6 @@
+pandas
+pillow
+pytesseract
+pdf2image
+openpyxl
+sarvamai
