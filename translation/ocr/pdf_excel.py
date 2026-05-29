@@ -1,22 +1,9 @@
 from PIL import Image, ImageOps
 import pytesseract
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 import pandas as pd
 import re
 from pathlib import Path
-import os
-
-# Dynamically resolve Tesseract OCR path, preferring workspace local copy
-project_root = Path(__file__).resolve().parent.parent
-local_tess = project_root / "Tesseract-OCR" / "tesseract.exe"
-global_tess = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
-if local_tess.exists():
-    pytesseract.pytesseract.tesseract_cmd = str(local_tess)
-elif os.path.exists(global_tess):
-    pytesseract.pytesseract.tesseract_cmd = global_tess
-else:
-    pytesseract.pytesseract.tesseract_cmd = 'tesseract'
-
 from pdf2image import convert_from_path, pdfinfo_from_path
 import tempfile
 import gc
@@ -36,7 +23,7 @@ def sentence_aware_chunks(text, max_words=MAX_WORDS):
 
 def process_pdf(pdf_path, dpi: int = 200):
     print(f" Reading PDF: {pdf_path.name}")
-    poppler_bin = str(project_root / "poppler-26.02.0" / "Library" / "bin")
+    poppler_bin = r'C:\IMALab\manipuri-english-translation-pipeline\poppler-26.02.0\Library\bin'
 
     try:
         info = pdfinfo_from_path(str(pdf_path), userpw=None, poppler_path=poppler_bin)

@@ -1,3 +1,5 @@
 {
-    "cmake.sourceDirectory": "C:/IMALab/manipuri-english-translation-pipeline/poppler-26.02.0/share/poppler"
+    "cmake.sourceDirectory": "C:/IMALab/manipuri-english-translation-pipeline/poppler-26.02.0/share/poppler",
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python.defaultInterpreterPath": "C:/Users/maver/AppData/Local/Python/pythoncore-3.14-64/python.exe"
 }

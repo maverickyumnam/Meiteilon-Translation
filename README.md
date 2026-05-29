@@ -145,6 +145,31 @@ You will be asked to enter the Excel file name.
 Output:
 An Excel file containing both English and Manipuri text.
 
+### Azure Translator (translation/azuretrans.py)
+
+This script translates English text in an Excel file into Manipuri using Microsoft Azure Translator. It supports interactive prompts and non-interactive flags.
+
+Usage (interactive — prompts for filename and credentials):
+```bash
+python translation/azuretrans.py
+```
+
+Usage (non-interactive):
+```powershell
+# Translate a file with key and region supplied on the command line (PowerShell)
+python translation/azuretrans.py --file "path\to\input.xlsx" --key YOUR_AZURE_KEY --region centralindia --endpoint https://api.cognitive.microsofttranslator.com/
+
+# Test without calling Azure (dry-run)
+python translation/azuretrans.py --file "path\to\input.xlsx" --dry-run
+```
+
+If you see DNS/name-resolution errors for the regional host (e.g. centralindia.api.cognitive.microsofttranslator.com), include the global endpoint `--endpoint https://api.cognitive.microsofttranslator.com/` as shown above to work around regional DNS issues.
+
+Notes:
+- Output is written as `output_<input_filename>.xlsx` in the same folder as the input file.
+- The script highlights Bengali-script rows in the Manipuri output column (if any) and saves the workbook.
+- If you hit quota or rate-limit errors, the script will prompt for a new API key and resume.
+
 ## 4. Meitei Mayek → Roman Transliteration
 
 This program transliterates Manipuri text written in Meitei Mayek into Roman script.
